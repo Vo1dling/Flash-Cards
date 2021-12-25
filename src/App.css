@@ -1,0 +1,7 @@
+@font-face {
+  font-family: "Terraria";
+  src: url("../../assets/Fonts/ANDYB.TTF") format("truetype");
+}
+* {
+  font-family: "Terraria";
+}
