@@ -13,7 +13,6 @@ class EditPage extends React.Component {
   questionInput = React.createRef();
   answerInput = React.createRef();
 
-<<<<<<< HEAD
   setupEdit = (e) => {
     const [questionInput, answerInput, menuRef] = [
       this.questionInput.current,
@@ -88,76 +87,6 @@ class EditPage extends React.Component {
         question: questionInput.value,
         answer: answerInput.value,
       });
-=======
-	setupEdit = (e) => {
-		const [questionInput, answerInput, menuRef] = [
-			this.questionInput.current,
-			this.answerInput.current,
-			this.menuRef.current,
-		];
-		const editItem = this.props.cards.find((item) => item.id === e.target.id);
-		this.setState({ currentItem: editItem });
-		questionInput.value = editItem.question;
-		answerInput.value = editItem.answer;
-		menuRef.classList.remove("hidden");
-	};
-	showHideMenu = async (e) => {
-		if (!this.props.loading) {
-			const [questionInput, answerInput, menuRef] = [
-				this.questionInput.current,
-				this.answerInput.current,
-				this.menuRef.current,
-			];
-			if (
-				questionInput.value !== "" &&
-				answerInput.value !== "" &&
-				!menuRef.classList.contains("hidden") &&
-				!e.target.classList.contains("cancel")
-			) {
-				this.setState({ loading: true }, async () => {
-					this.props.setLoading();
-					menuRef.classList.add("hidden");
-					if (this.state.currentItem === {}) await this.postItem();
-					else await this.postItem(this.state.currentItem.id);
-					this.props.getData();
-				});
-			} else if (e.target.classList.contains("cancel")) {
-				menuRef.classList.add("hidden");
-				this.clearInputs();
-			} else if (!menuRef.classList.contains("hidden")) {
-				[questionInput, answerInput].forEach((input) => {
-					if (input.value === "") {
-						input.classList.add("empty-input");
-						setTimeout(() => {
-							input.classList.remove("empty-input");
-						}, 1500);
-					}
-				});
-			} else {
-				menuRef.classList.remove("hidden");
-			}
-		}
-	};
-	clearInputs = () => {
-		const [questionInput, answerInput] = [this.questionInput.current, this.answerInput.current];
-		questionInput.value = "";
-		answerInput.value = "";
-		this.setState({ currentItem: {} });
-	};
-	postItem = async (id) => {
-		const [questionInput, answerInput] = [this.questionInput.current, this.answerInput.current];
-		if (id) {
-			await api.put(id, {
-				question: questionInput.value,
-				answer: answerInput.value,
-			});
-			this.setState({ currentItem: {} });
-		} else
-			await api.post("", {
-				question: questionInput.value,
-				answer: answerInput.value,
-			});
->>>>>>> 76ce5bc4fb6230fe7255c5002385fb4b40e5ecfc
 
     questionInput.value = "";
     answerInput.value = "";
